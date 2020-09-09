@@ -1,25 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+// import './App.css';
+import {Grid, Button, CssBaseline} from '@material-ui/core';
+import Header from "./components/HeaderComponent";
+import Profile from "./components/ProfileComponent";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    
+    <Grid container direction = "column">
+      <Grid item>
+        <Header/>
+      </Grid>
+      <Grid item container>
+        <Grid item xs={0} sm={1} />
+        <Grid item xs={12} sm={10}>
+          <Profile />
+        </Grid>
+        <Grid item xs={0} sm={1} />
+      </Grid>
+    </Grid>
   );
 }
 
