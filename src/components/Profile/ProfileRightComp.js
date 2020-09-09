@@ -7,45 +7,58 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
+import ProfileAbout from './ProfileAboutComp';
+import ProfileReviews from './ProfileReviewsComp';
+import ProfilePosts from './ProfilePostsComp';
+import ProfileProjects from './ProfileProjectsComp';
+import { Grid } from '@material-ui/core';
+
 function TabPanel(props) {
-    const { children, value, index, ...other } = props;
-  
-    return (
-      <div
-        role="tabpanel"
-        hidden={value !== index}
-        id={`simple-tabpanel-${index}`}
-        aria-labelledby={`simple-tab-${index}`}
-        {...other}
-      >
-        {value === index && (
-          <Box p={3}>
-            <Typography>{children}</Typography>
-          </Box>
-        )}
-      </div>
-    );
-  }
-  
-  TabPanel.propTypes = {
-    children: PropTypes.node,
-    index: PropTypes.any.isRequired,
-    value: PropTypes.any.isRequired,
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`scrollable-auto-tabpanel-${index}`}
+      aria-labelledby={`scrollable-auto-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box p={3}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  );
+}
+
+TabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.any.isRequired,
+  value: PropTypes.any.isRequired,
+};
+
+function a11yProps(index) {
+  return {
+    id: `scrollable-auto-tab-${index}`,
+    'aria-controls': `scrollable-auto-tabpanel-${index}`,
   };
-  
-  function a11yProps(index) {
-    return {
-      id: `simple-tab-${index}`,
-      'aria-controls': `simple-tabpanel-${index}`,
-    };
+}
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+    width: '100%',
+    backgroundColor: theme.palette.background.paper,
+  },
+  root2: {
+    justifyContent: "center"
+  },
+  scroller: {
+    flexGrow: "0"
   }
-  
-  const useStyles = makeStyles((theme) => ({
-    root: {
-      flexGrow: 1,
-      backgroundColor: theme.palette.background.paper,
-    },
-  }));
+}));
   
 const  ProfileRight = () => {
     const classes = useStyles();
@@ -56,26 +69,36 @@ const  ProfileRight = () => {
     };
   
     return (
-      <div className={classes.root}>
+      <div container className={classes.root}>
         <AppBar position="static" color="transparent">
-          <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
-            <Tab label="About"  {...a11yProps(0)} />
-            <Tab label="Projects" {...a11yProps(1)} />
-            <Tab label="Reviews" {...a11yProps(2)} />
-            <Tab label="Posts" {...a11yProps(3)} />
-          </Tabs>
+        <Tabs
+        classes={{ root: classes.root2, scroller: classes.scroller }}
+          value={value}
+          onChange={handleChange}
+          indicatorColor="secondary"
+          textColor="primary"
+          centered
+          variant="scrollable"
+          scrollButtons="auto"
+          aria-label="scrollable auto tabs example"
+        >
+          <Tab label="About"  {...a11yProps(0)} />
+          <Tab label="Projects" {...a11yProps(1)} />
+          <Tab label="Reviews" {...a11yProps(2)} />
+          <Tab label="Posts" {...a11yProps(3)} />
+        </Tabs>
         </AppBar>
         <TabPanel value={value} index={0}>
-          Item One
+          <ProfileAbout />
         </TabPanel>
         <TabPanel value={value} index={1}>
-          Item Two
+          <ProfileProjects/>
         </TabPanel>
         <TabPanel value={value} index={2}>
-          Item Three
+          <ProfileReviews />
         </TabPanel>
         <TabPanel value={value} index={3}>
-          Item Four
+          <ProfilePosts />
         </TabPanel>
       </div>
     );

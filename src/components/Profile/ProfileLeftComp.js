@@ -9,7 +9,7 @@ import { Grid, Avatar } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) =>({
   root: {
-    // minWidth: 275,
+    minHeight: 1000,
     
   },
   title: {
@@ -38,7 +38,7 @@ const ProfileLeft = () => {
   const FirstName = "FirstName";
   const LastName = "LastName";
   const Designation = "Developer"
-  const profileImage = "";
+  const profileImage = "./download.jpeg";
 
   return (
 
@@ -49,8 +49,8 @@ const ProfileLeft = () => {
             <div align="center">
                 <Avatar alt = "Sample Profile Pic" src={profileImage} className={classes.large} />
             </div>
-            
-            
+            <br/>
+            <br/>
             <Typography variant="h4" component="h2" align="center">
                 {FirstName} {LastName}
             </Typography>
@@ -60,6 +60,9 @@ const ProfileLeft = () => {
             <br/>
             <Typography variant="body2" component="p">
             blah blah balh balhadfhlkasdhjfklhafkl; kljadfkljdsakjfhdjals fdsahfkjsadfkjsakf hjasdfklj
+            <br />
+            no of projects, vagera
+            
             <br />
             {'"hahaha lolo dlfklsadhfkdlahsfkldhaksflhoie"'}
             </Typography>
