@@ -18,13 +18,15 @@ const useStyles = makeStyles((theme) =>({
       },
       chip: {
         margin: theme.spacing(0.5),
+        background:"#EDF2F4",
+        color:"#2B2D42",
       },
     title: {
       fontSize: 14,
   
     },
     pos: {
-      margin: -5
+    //   margin: -5
     },
     large: {
       width: theme.spacing(25),
@@ -36,6 +38,12 @@ const useStyles = makeStyles((theme) =>({
       justifyContent:'center',
       margin : 'auto',
       alignItems : 'center'
+  },
+  cardBackround:{
+    background: "white"
+  },
+  cardContent:{
+      background: "#EDF2F4"
   }
   }));
 
@@ -56,7 +64,7 @@ const Skills =  ()=>{
       };
     return(
         <Card>
-            <CardContent>
+            <CardContent >
             <Grid container>
                 <Grid item>                       
                     <Typography variant="h4" component="h2" align="left">
@@ -79,7 +87,7 @@ const Skills =  ()=>{
                                 label={data.label}
                                 // onDelete={handleDelete(data)}
                                 className={classes.chip}
-                                variant="outlined"
+                                variant="default"
                                 color="primary"
                                 />
                             </li>
@@ -87,6 +95,7 @@ const Skills =  ()=>{
                         })}
                     </div>
                     {/* //chips code ends here */}
+                    <br/>
                     <Typography className={classes.pos} color="textSecondary" align="justify">
                         {skillDes}
                     </Typography>
@@ -109,7 +118,7 @@ const Experiences =  ()=>{
         { key: 4, label: 'Performance tunning of the legacy data storages and search queries of the critical progressive web applicationusing DAX and ORD resulting in response time decrease by 79%.js' },
       ]);
     return(
-        <Card>
+        <Card className = {classes.cardBackround}>
             <CardContent>
             <Grid container>
                 <Grid item>                       
@@ -125,7 +134,7 @@ const Experiences =  ()=>{
                                 return (
                                 <li >
                                     <Card variant="outlined">
-                                        <CardContent>
+                                        <CardContent className={classes.cardContent}>
                                             <Typography className={classes.pos} color="textSecondary" align="justify"> {data.label}</Typography>
                                         </CardContent>
                                     </Card>

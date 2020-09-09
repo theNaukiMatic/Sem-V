@@ -5,11 +5,15 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { Grid, Avatar } from '@material-ui/core';
+import { Grid, Avatar,Box } from '@material-ui/core';
+
+import Rating from '@material-ui/lab/Rating';
+
+// import image from "/src/components/Profile/download.jpg";
 
 const useStyles = makeStyles((theme) =>({
   root: {
-    minHeight: 1000,
+    // height : "full" ,
     
   },
   title: {
@@ -38,7 +42,9 @@ const ProfileLeft = () => {
   const FirstName = "FirstName";
   const LastName = "LastName";
   const Designation = "Developer"
-  const profileImage = "./download.jpeg";
+  const profileImage = "";
+
+  const [rating, setRating] = React.useState(3);
 
   return (
 
@@ -67,7 +73,13 @@ const ProfileLeft = () => {
             {'"hahaha lolo dlfklsadhfkdlahsfkldhaksflhoie"'}
             </Typography>
         </Grid>
+        <br/>
+        
       </Grid>
+      <Box component="flex" mb={3} borderColor="transparent">
+        <Typography component="legend">Rating</Typography>
+        <Rating name="read-only" value={rating} readOnly />
+      </Box>
         
       </CardContent>
       <CardActions>

@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { } from 'react';
 import './App.css';
-import {Grid, Button, CssBaseline} from '@material-ui/core';
+import {Grid} from '@material-ui/core';
 import Header from "./components/HeaderComponent";
 import Profile from "./components/Profile";
 

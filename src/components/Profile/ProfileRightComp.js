@@ -11,7 +11,7 @@ import ProfileAbout from './ProfileAboutComp';
 import ProfileReviews from './ProfileReviewsComp';
 import ProfilePosts from './ProfilePostsComp';
 import ProfileProjects from './ProfileProjectsComp';
-import { Grid } from '@material-ui/core';
+import {  } from '@material-ui/core';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
