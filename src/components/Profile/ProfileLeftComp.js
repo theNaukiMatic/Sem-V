@@ -59,16 +59,16 @@ const ProfileLeft = () => {
             </Typography>
             <br/>
             <Typography variant="body2" component="p">
-            well meaning and kindly.
+            blah blah balh balhadfhlkasdhjfklhafkl; kljadfkljdsakjfhdjals fdsahfkjsadfkjsakf hjasdfklj
             <br />
-            {'"a benevolent smile"'}
+            {'"hahaha lolo dlfklsadhfkdlahsfkldhaksflhoie"'}
             </Typography>
         </Grid>
       </Grid>
         
       </CardContent>
       <CardActions>
-        <Button size="small">Learn More</Button>
+        <Button size="small" color = "secondary">Edit Profile</Button>
       </CardActions>
     </Card>
   );

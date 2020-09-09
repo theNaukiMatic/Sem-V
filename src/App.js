@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 // import './App.css';
 import {Grid, Button, CssBaseline} from '@material-ui/core';
 import Header from "./components/HeaderComponent";
-import Profile from "./components/ProfileComponent";
+import Profile from "./components/Profile";
 
 function App() {
   return (
-    
     <Grid container direction = "column">
       <Grid item>
         <Header/>
