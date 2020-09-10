@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppBar, Typography, Toolbar, Grid } from '@material-ui/core';
+import {Grid} from '@material-ui/core';
 import ProfileLeft from './ProfileLeftComp';
 import ProfileRight from './ProfileRightComp';
 
