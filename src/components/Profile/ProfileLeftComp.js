@@ -1,25 +1,15 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import { Grid, Avatar,Box } from '@material-ui/core';
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import Card from "@material-ui/core/Card";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
+import { Grid, Avatar, Box } from "@material-ui/core";
 
-import Rating from '@material-ui/lab/Rating';
+import Rating from "@material-ui/lab/Rating";
 
-// import image from "/src/components/Profile/download.jpg";
-
-const useStyles = makeStyles((theme) =>({
-  root: {
-    // height : "full" ,
-    
-  },
-  title: {
-    fontSize: 14,
-
-  },
+const useStyles = makeStyles((theme) => ({
   pos: {
     marginBottom: 12,
   },
@@ -27,13 +17,6 @@ const useStyles = makeStyles((theme) =>({
     width: theme.spacing(25),
     height: theme.spacing(25),
   },
-  makeCenter:{
-    // display :'flex',
-    // flexDirection:"col",
-    justifyContent:'center',
-    margin : 'auto',
-    alignItems : 'center'
-}
 }));
 
 const ProfileLeft = () => {
@@ -41,51 +24,59 @@ const ProfileLeft = () => {
 
   const FirstName = "FirstName";
   const LastName = "LastName";
-  const Designation = "Developer"
+  const Designation = "Developer";
   const profileImage = "";
 
   const [rating, setRating] = React.useState(3);
 
   return (
-
-    <Card className={classes.root}>
+    <Card>
       <CardContent>
-      <Grid container justify="center">
-        <Grid item>
+        <Grid container justify="center">
+          <Grid item>
             <div align="center">
-                <Avatar alt = "Sample Profile Pic" src={profileImage} className={classes.large} />
+              <Avatar
+                alt="Sample Profile Pic"
+                src={profileImage}
+                className={classes.large}
+              />
             </div>
-            <br/>
-            <br/>
+            <br />
+            <br />
             <Typography variant="h4" component="h2" align="center">
-                {FirstName} {LastName}
+              {FirstName} {LastName}
             </Typography>
-            <Typography className={classes.pos} color="textSecondary" align="center">
-                {Designation}
+            <Typography
+              className={classes.pos}
+              color="textSecondary"
+              align="center"
+            >
+              {Designation}
             </Typography>
-            <br/>
+            <br />
+
             <Typography variant="body2" component="p">
-            blah blah balh balhadfhlkasdhjfklhafkl; kljadfkljdsakjfhdjals fdsahfkjsadfkjsakf hjasdfklj
-            <br />
-            no of projects, vagera
-            
-            <br />
-            {'"hahaha lolo dlfklsadhfkdlahsfkldhaksflhoie"'}
+              blah blah balh balhadfhlkasdhjfklhafkl; kljadfkljdsakjfhdjals
+              fdsahfkjsadfkjsakf hjasdfklj
+              <br />
+              no of projects, vagera
+              <br />
+              {'"hahaha lolo dlfklsadhfkdlahsfkldhaksflhoie"'}
             </Typography>
+          </Grid>
+          <br />
         </Grid>
-        <br/>
-        
-      </Grid>
-      <Box component="flex" mb={3} borderColor="transparent">
-        <Typography component="legend">Rating</Typography>
-        <Rating name="read-only" value={rating} readOnly />
-      </Box>
-        
+        <Box component="flex" mb={3} borderColor="transparent">
+          <Typography component="legend">Rating</Typography>
+          <Rating name="read-only" value={rating} readOnly />
+        </Box>
       </CardContent>
       <CardActions>
-        <Button size="small" color = "secondary">Edit Profile</Button>
+        <Button size="small" color="secondary">
+          Edit Profile
+        </Button>
       </CardActions>
     </Card>
   );
-}
+};
 export default ProfileLeft;

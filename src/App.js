@@ -1,14 +1,14 @@
-import React, { } from 'react';
-import './App.css';
-import {Grid} from '@material-ui/core';
+import React from "react";
+import "./App.css";
+import { Grid } from "@material-ui/core";
 import Header from "./components/HeaderComponent";
 import Profile from "./components/Profile";
 
 function App() {
   return (
-    <Grid container direction = "column">
+    <Grid container direction="column">
       <Grid item>
-        <Header/>
+        <Header />
       </Grid>
       <Grid item container>
         <Grid item xs={0} sm={2} />
