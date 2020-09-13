@@ -33,7 +33,7 @@ const Review = (props) => {
 				<CardContent>
 					<CardActionArea>
 						<Grid container>
-							<Grid item sm={1}>
+							<Grid item xs={2} sm={1}>
 								<Avatar
 									alt={reviewAuthor}
 									src="/static/images/avatar/1.jpg"
@@ -41,21 +41,23 @@ const Review = (props) => {
 								/>
 							</Grid>
 
-							<Grid item sm={4}>
+							<Grid item xs={9} sm={6}>
 								<Typography
 									variant="h5"
-									className={classes.topPadding}
-								>
+									className={classes.topPadding}>
 									{reviewAuthor}
 								</Typography>
 							</Grid>
-							<Grid item sm={4}></Grid>
-							<Grid item className={classes.topPadding}>
+							<Grid item sm={2} xs={2}></Grid>
+							<Grid
+								item
+								className={classes.topPadding}
+								xs={9}
+								sm={3}>
 								<Box
 									component="flex"
-									mb={3}
-									borderColor="transparent"
-								>
+									// mb={3}
+									borderColor="transparent">
 									<Rating
 										name="read-only"
 										value={rating}
@@ -69,8 +71,7 @@ const Review = (props) => {
 					<Typography
 						variant="body2"
 						color="textSecondary"
-						component="p"
-					>
+						component="p">
 						{reviewDesc}
 					</Typography>
 				</CardContent>

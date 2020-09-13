@@ -36,7 +36,7 @@ const NoReviews = (props) => {
 						style={{ color: "gray", padding: "20" }}
 					>
 						{" "}
-						{props.nickName} has not posted any projects yet!{" "}
+						{props.nickName} do not have any reviews yet!{" "}
 					</Typography>
 				</CardContent>
 			</Card>
