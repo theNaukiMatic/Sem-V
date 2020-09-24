@@ -33,8 +33,7 @@ const NoReviews = (props) => {
 					<Typography
 						variant="h5"
 						align="center"
-						style={{ color: "gray", padding: "20" }}
-					>
+						style={{ color: "gray", padding: "20" }}>
 						{" "}
 						{props.nickName} do not have any reviews yet!{" "}
 					</Typography>
@@ -61,7 +60,6 @@ const ProfileReviews = () => {
 				"Conducting requirements gathering and validation as a part of collaboration for the high-profile external web app that helped to address important UI/UX parts of the system's user interface before the active phase of development.",
 		},
 	];
-	console.log(Reviews.length);
 	if (Reviews.length === 0) {
 		return <NoReviews nickName={nickName} />;
 	} else {
@@ -81,8 +79,7 @@ const ProfileReviews = () => {
 							<span>
 								<li
 									key={data.id}
-									style={{ listStyleType: "none" }}
-								>
+									style={{ listStyleType: "none" }}>
 									<Review project={data} />
 								</li>
 								<br />

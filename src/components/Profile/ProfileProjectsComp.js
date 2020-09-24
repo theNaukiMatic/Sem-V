@@ -45,20 +45,20 @@ const NoProjects = (props) => {
 const ProfilePosts = () => {
 	const nickName = "theNaukiMatic";
 	const Projects = [
-		// {
-		// 	id: "259853",
-		// 	rating: 3,
-		// 	name: "Project 1",
-		// 	desc:
-		// 		"Conducting requirements gathering and validation as a part of collaboration for the high-profile external web app that helped to address important UI/UX parts of the system's user interface before the active phase of development.",
-		// },
-		// {
-		// 	id: "485853",
-		// 	rating: 4,
-		// 	name: "Project 2",
-		// 	desc:
-		// 		"Conducting requirements gathering and validation as a part of collaboration for the high-profile external web app that helped to address important UI/UX parts of the system's user interface before the active phase of development.",
-		// },
+		{
+			id: "259853",
+			rating: 3,
+			name: "Project 1",
+			desc:
+				"Conducting requirements gathering and validation as a part of collaboration for the high-profile external web app that helped to address important UI/UX parts of the system's user interface before the active phase of development.",
+		},
+		{
+			id: "485853",
+			rating: 4,
+			name: "Project 2",
+			desc:
+				"Conducting requirements gathering and validation as a part of collaboration for the high-profile external web app that helped to address important UI/UX parts of the system's user interface before the active phase of development.",
+		},
 	];
 	console.log(Projects.length);
 	if (Projects.length === 0) {
