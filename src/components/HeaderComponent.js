@@ -15,6 +15,12 @@ import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 
+
+import { Link } from 'react-router-dom';
+const linkStyle = {
+    color: 'black'
+}
+
 const useStyles = makeStyles((theme) => ({
     grow: {
         flexGrow: 1,
@@ -115,7 +121,9 @@ export default function Navbar() {
             open={isMenuOpen}
             onClose={handleMenuClose}
         >
-            <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+            <Link to="/Profile" style={linkStyle}>
+                <MenuItem onClick={handleMenuClose}>  Profile </MenuItem>
+            </Link>
             <MenuItem onClick={handleMenuClose}>My account</MenuItem>
         </Menu>
     );
@@ -156,7 +164,10 @@ export default function Navbar() {
                 >
                     <AccountCircle />
                 </IconButton>
-                <p>Profile</p>
+                <Link to="/Profile">
+                    <p>Profile</p>
+                </Link>
+
             </MenuItem>
         </Menu>
     );
@@ -173,9 +184,12 @@ export default function Navbar() {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography className={classes.title} variant="h6" noWrap>
-                        Humsafar
-          </Typography>
+                    <Link to="/" style={{ color: 'white', textDecoration: 'none' }}>
+                        <Typography className={classes.title} variant="h6" noWrap>
+                            Humsafar chutiya naam hai
+                    </Typography>
+                    </Link>
+
                     <div className={classes.search}>
                         <div className={classes.searchIcon}>
                             <SearchIcon />
@@ -225,8 +239,8 @@ export default function Navbar() {
                     </div>
                 </Toolbar>
             </AppBar>
-            {renderMobileMenu}
-            {renderMenu}
-        </div>
+            { renderMobileMenu}
+            { renderMenu}
+        </div >
     );
 }
