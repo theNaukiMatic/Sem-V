@@ -1,24 +1,22 @@
 import React from "react";
 import "./App.css";
 import { Grid } from "@material-ui/core";
-import Main from './components/MainComponent'
+import Main from "./components/MainComponent";
+
+import { configureStore } from "@reduxjs/toolkit";
+import { Provider } from "react-redux";
+import rootReducer from "./store/reducers";
+
+const store = configureStore({
+	reducer: rootReducer,
+});
 
 function App() {
-  return (
-    // <Grid container direction="column">
-    //   <Grid item>
-    //     <Header />
-    //   </Grid>
-    //   <Grid item container>
-    //     <Grid item xs={0} sm={2} />
-    //     <Grid item xs={12} sm={8}>
-    //       <Profile />
-    //     </Grid>
-    //     <Grid item xs={0} sm={2} />
-    //   </Grid>
-    // </Grid>
-    <Main />
-  );
+	return (
+		<Provider store={store}>
+			<Main />
+		</Provider>
+	);
 }
 
 export default App;
