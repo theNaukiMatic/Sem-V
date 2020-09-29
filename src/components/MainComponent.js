@@ -7,6 +7,7 @@ import SignUp from "./SignupComponent";
 import { Container, Grid } from "@material-ui/core";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Link } from "react-router-dom";
+import Loading from "./LoadingComponent";
 
 import { useSelector, useDispatch } from "react-redux";
 
@@ -32,8 +33,11 @@ const Home = () => {
 			<div>
 				<h1>THIS IS A TEMPORARY HOMEPAGE</h1>
 				<br />
+				<h1>Logged in as {auth.user.firstName}</h1>
 			</div>
 		);
+	} else if (auth.isLoading) {
+		return <Loading />;
 	} else {
 		return <SignIn />;
 	}
