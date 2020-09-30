@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -8,17 +8,16 @@ import TextField from "@material-ui/core/TextField";
 import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
+
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-
+import { Redirect } from "react-router-dom";
 import { useState } from "react";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../store/features/auth/authSlice";
-
-const mapDispatch = { loginUser };
-const mapState = null;
+import SignUp from "./SignupComponent";
 
 function Copyright() {
 	return (
@@ -35,7 +34,7 @@ function Copyright() {
 
 const useStyles = makeStyles((theme) => ({
 	paper: {
-		marginTop: theme.spacing(8),
+		marginTop: theme.spacing(4),
 		display: "flex",
 		flexDirection: "column",
 		alignItems: "center",
@@ -53,11 +52,19 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const SignIn = ({ loginUser }) => {
+const SignIn = () => {
+	const [isNew, setNew] = useState(false);
+	if (isNew) return <SignUp New={isNew} Toggle={setNew} />;
+	else return <SignInPart New={isNew} Toggle={setNew} />;
+};
+const SignInPart = (props) => {
 	const classes = useStyles();
+	const dispatch = useDispatch();
+	const auth = useSelector((state) => state.auth);
 
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	// const dispatch = useDispatch();
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -66,11 +73,13 @@ const SignIn = ({ loginUser }) => {
 			password: password,
 		};
 		console.log(creds);
-		loginUser(creds);
+		dispatch(loginUser(creds));
 	};
+	if (auth.isAuthenticated) {
+		return <Redirect to="/" />;
+	}
 	return (
-		<Container component="main" maxWidth="xs">
-			<CssBaseline />
+		<Container component="main" paddingX={2}>
 			<div className={classes.paper}>
 				<Avatar className={classes.avatar}>
 					<LockOutlinedIcon />
@@ -121,15 +130,19 @@ const SignIn = ({ loginUser }) => {
 						Sign In
 					</Button>
 					<Grid container>
-						<Grid item xs>
+						{/* <Grid item xs>
 							<Link href="#" variant="body2">
 								Forgot password?
 							</Link>
-						</Grid>
+						</Grid> */}
 						<Grid item>
-							<Link href="#" variant="body2">
+							<Button
+								onClick={() => {
+									props.Toggle(!props.New);
+								}}
+								variant="body2">
 								{"Don't have an account? Sign Up"}
-							</Link>
+							</Button>
 						</Grid>
 					</Grid>
 				</form>
@@ -141,4 +154,4 @@ const SignIn = ({ loginUser }) => {
 	);
 };
 
-export default connect(mapState, mapDispatch)(SignIn);
+export default SignIn;
