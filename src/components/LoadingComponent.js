@@ -5,7 +5,7 @@ import { Box } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
 	root: {
-		marginTop: "40vh",
+		marginTop: theme.spacing(4),
 		display: "flex",
 		flexDirection: "column",
 		alignItems: "center",
@@ -20,7 +20,7 @@ export default function Loading() {
 		<div>
 			<Box display="flex">
 				<Box flexGrow={1}>
-					<Box style={{ height: "90vh" }} className={classes.root}>
+					<Box className={classes.root}>
 						<CircularProgress size={100} />
 					</Box>
 				</Box>

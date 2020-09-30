@@ -65,7 +65,6 @@ const Navbar = () => {
 					<Link href="/profile">
 						<MenuItem onClick={handleClose}>Your Profile</MenuItem>
 					</Link>
-
 					<MenuItem
 						onClick={() => {
 							handleClose();
