@@ -69,7 +69,7 @@ const SignInPart = (props) => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		const creds = {
-			email: email,
+			username: email,
 			password: password,
 		};
 		console.log(creds);
@@ -90,7 +90,8 @@ const SignInPart = (props) => {
 				<form
 					className={classes.form}
 					noValidate
-					onSubmit={handleSubmit}>
+					onSubmit={handleSubmit}
+				>
 					<TextField
 						variant="outlined"
 						margin="normal"
@@ -126,7 +127,8 @@ const SignInPart = (props) => {
 						fullWidth
 						variant="contained"
 						color="primary"
-						className={classes.submit}>
+						className={classes.submit}
+					>
 						Sign In
 					</Button>
 					<Grid container>
@@ -140,7 +142,8 @@ const SignInPart = (props) => {
 								onClick={() => {
 									props.Toggle(!props.New);
 								}}
-								variant="body2">
+								variant="body2"
+							>
 								{"Don't have an account? Sign Up"}
 							</Button>
 						</Grid>

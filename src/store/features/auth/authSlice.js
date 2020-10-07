@@ -109,12 +109,13 @@ export const loginUser = (creds) => (dispatch) => {
 	// dispatch(receiveLogin(response));
 	//temp code ends////////////////////////////////
 
-	return fetch(baseUrl + "user", {
-		method: "GET",
+	return fetch(baseUrl + "users/login", {
+		method: "Post",
 		headers: {
 			"Content-Type": "application/json",
+			// "Access-Control-Allow-Origin": "origin-list",
 		},
-		// body: JSON.stringify(creds),
+		body: JSON.stringify(creds),
 	})
 		.then(
 			(response) => {
