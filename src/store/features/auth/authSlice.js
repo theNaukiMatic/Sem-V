@@ -17,22 +17,20 @@ const authSlice = createSlice({
 	},
 	reducers: {
 		//login reducers
-		loginRequest: (state, action) =>
-			(state = {
-				...state,
-				isLoading: true,
-				isAuthenticated: false,
-				user: action.creds,
-			}),
-		loginSuccess: (state, action) =>
-			(state = {
-				...state,
-				isLoading: false,
-				isAuthenticated: true,
-				errMess: "",
-				token: action.token,
-				user: action.user,
-			}),
+		loginRequest: (state, action) => ({
+			...state,
+			isLoading: true,
+			isAuthenticated: false,
+			user: action.creds,
+		}),
+		loginSuccess: (state, action) => ({
+			...state,
+			isLoading: false,
+			isAuthenticated: true,
+			errMess: "",
+			token: action.token,
+			user: action.user,
+		}),
 		loginFailed: (state, action) => {
 			state = {
 				...state,
@@ -144,7 +142,7 @@ export const loginUser = (creds) => (dispatch) => {
 			} else {
 				var error = new Error("Error " + response.status);
 				error.response = response;
-				alert(error);
+				alert(error.message);
 				throw error;
 			}
 		})

@@ -62,14 +62,13 @@ const SignInPart = (props) => {
 	const dispatch = useDispatch();
 	const auth = useSelector((state) => state.auth);
 
-	const [email, setEmail] = useState("");
+	const [userName, setUserName] = useState("");
 	const [password, setPassword] = useState("");
-	// const dispatch = useDispatch();
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		const creds = {
-			username: email,
+			username: userName,
 			password: password,
 		};
 		console.log(creds);
@@ -98,12 +97,12 @@ const SignInPart = (props) => {
 						required
 						fullWidth
 						id="email"
-						label="Email Address"
-						name="email"
-						autoComplete="email"
+						label="User Name"
+						name="UserName"
+						autoComplete="username"
 						autoFocus
-						value={email}
-						onChange={(e) => setEmail(e.target.value)}
+						value={userName}
+						onChange={(e) => setUserName(e.target.value)}
 					/>
 					<TextField
 						variant="outlined"
@@ -118,10 +117,6 @@ const SignInPart = (props) => {
 						value={password}
 						onChange={(e) => setPassword(e.target.value)}
 					/>
-					{/* <FormControlLabel
-						control={<Checkbox value="remember" color="primary" />}
-						label="Remember me"
-					/> */}
 					<Button
 						type="submit"
 						fullWidth
@@ -132,11 +127,6 @@ const SignInPart = (props) => {
 						Sign In
 					</Button>
 					<Grid container>
-						{/* <Grid item xs>
-							<Link href="#" variant="body2">
-								Forgot password?
-							</Link>
-						</Grid> */}
 						<Grid item>
 							<Button
 								onClick={() => {
