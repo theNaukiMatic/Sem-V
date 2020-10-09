@@ -96,22 +96,10 @@ export const loginUser = (creds) => (dispatch) => {
 	// We dispatch requestLogin to kickoff the call to the API
 	dispatch(requestLogin(creds));
 
-	//temp api simulation code//////////////////
-	// const response = {
-	// 	isAuth: true,
-	// 	token: "thisfjadklfkj3489dafj",
-	// 	id: "5f6febd2aa8b2c0a5b78587b",
-	// 	email: "nik564@gmail.com",
-	// };
-	// localStorage.setItem("token", response.token);
-	// dispatch(receiveLogin(response));
-	//temp code ends////////////////////////////////
-
 	return fetch(baseUrl + "users/login", {
 		method: "Post",
 		headers: {
 			"Content-Type": "application/json",
-			// "Access-Control-Allow-Origin": "origin-list",
 		},
 		body: JSON.stringify(creds),
 	})
@@ -136,8 +124,6 @@ export const loginUser = (creds) => (dispatch) => {
 			if (response.success) {
 				// If login was successful, set the token in local storage
 				localStorage.setItem("token", response.token);
-				// Dispatch the success action
-				// dispatch(fetchFavorites());
 				dispatch(receiveLogin(response));
 			} else {
 				var error = new Error("Error " + response.status);
@@ -164,10 +150,53 @@ export const receiveLogout = () => {
 // Logs the user out
 export const logoutUser = () => (dispatch) => {
 	dispatch(requestLogout());
-	localStorage.removeItem("token");
-	localStorage.removeItem("creds");
-	// dispatch(favoritesFailed("Error 401: Unauthorized"));
-	dispatch(receiveLogout());
+	console.log("logout started")
+	return fetch(baseUrl + "users/logout", {
+		method: "Get",
+		headers: {
+			"Content-Type": "application/json",
+		},
+	})
+		.then(
+			(response) => {
+				if (response.ok) {
+					console.log("reached here!")
+					
+					return response;
+				} else {
+					console.log("reached error else!")
+					
+					var error = new Error(
+						"Error " + response.status + ": " + response.statusText
+					);
+					error.response = response;
+					throw error;
+				}
+			},
+			(error) => {
+				console.log("reached error!")
+				throw error;
+			}
+		)
+		.then((response) => response.json())
+		.then((response) => {
+			
+			
+			if (response.success) {
+				console.log("response.success")
+				localStorage.removeItem("token");
+				dispatch(receiveLogout());
+			} else {
+				console.log("resopnse.error")
+				var error = new Error("Error " + response.status);
+				error.response = response;
+				// alert(error.message);
+				throw error;
+			}
+		})
+		.catch((error) =>
+			console.log("there was an error during logout! : " + error)
+		);
 };
 
 export default authSlice.reducer;
