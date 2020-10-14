@@ -7,13 +7,16 @@ const authSlice = createSlice({
 		isLoading: false,
 		isAuthenticated: localStorage.getItem("token") ? true : false,
 		token: localStorage.getItem("token"),
+		userId: localStorage.getItem("userId"),
 		user: {
-			id: null,
+			userId: null,
 			firstName: null,
 			lastName: null,
 			email: null,
 		},
 		errMess: null,
+		//new proper intial state:
+		//remove user with userId
 	},
 	reducers: {
 		//login reducers
@@ -30,32 +33,33 @@ const authSlice = createSlice({
 			errMess: "",
 			token: action.token,
 			user: action.user,
+			userId: action.user.userId,
 		}),
-		loginFailed: (state, action) => {
-			state = {
-				...state,
-				isLoading: false,
-				isAuthenticated: false,
-				errMess: action.message,
-			};
-			return state;
-		},
+		loginFailed: (state, action) => ({
+			...state,
+			isLoading: false,
+			isAuthenticated: false,
+			errMess: action.message,
+		}),
 
 		//logout reducers
-		logoutRequest(state, action) {
-			return (state = {
-				isLoading: true,
-				isAuthenticated: true,
-			});
-		},
-		logoutSuccess(state, action) {
-			return (state = {
-				isLoading: false,
-				isAuthenticated: false,
-				token: "",
-				user: null,
-			});
-		},
+		logoutRequest: (state, action) => ({
+			...state,
+			isLoading: true,
+			isAuthenticated: false,
+		}),
+		logoutSuccess: (state, action) => ({
+			...state,
+			isLoading: false,
+			isAuthenticated: false,
+			token: "",
+			user: {
+				id: null,
+				firstName: null,
+				lastName: null,
+				email: null,
+			},
+		}),
 	},
 });
 
@@ -124,6 +128,7 @@ export const loginUser = (creds) => (dispatch) => {
 			if (response.success) {
 				// If login was successful, set the token in local storage
 				localStorage.setItem("token", response.token);
+				localStorage.setItem("userId", response.userId);
 				dispatch(receiveLogin(response));
 			} else {
 				var error = new Error("Error " + response.status);
@@ -150,7 +155,8 @@ export const receiveLogout = () => {
 // Logs the user out
 export const logoutUser = () => (dispatch) => {
 	dispatch(requestLogout());
-	console.log("logout started")
+	localStorage.removeItem("token");
+	console.log("logout started");
 	return fetch(baseUrl + "users/logout", {
 		method: "Get",
 		headers: {
@@ -160,12 +166,12 @@ export const logoutUser = () => (dispatch) => {
 		.then(
 			(response) => {
 				if (response.ok) {
-					console.log("reached here!")
-					
+					console.log("reached here!");
+
 					return response;
 				} else {
-					console.log("reached error else!")
-					
+					console.log("reached error else!");
+
 					var error = new Error(
 						"Error " + response.status + ": " + response.statusText
 					);
@@ -174,20 +180,18 @@ export const logoutUser = () => (dispatch) => {
 				}
 			},
 			(error) => {
-				console.log("reached error!")
+				console.log("reached error!");
 				throw error;
 			}
 		)
 		.then((response) => response.json())
 		.then((response) => {
-			
-			
 			if (response.success) {
-				console.log("response.success")
+				console.log("response.success");
 				localStorage.removeItem("token");
 				dispatch(receiveLogout());
 			} else {
-				console.log("resopnse.error")
+				console.log("resopnse.error");
 				var error = new Error("Error " + response.status);
 				error.response = response;
 				// alert(error.message);

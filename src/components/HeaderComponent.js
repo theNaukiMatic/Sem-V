@@ -52,7 +52,8 @@ const Navbar = () => {
 					aria-controls="simple-menu"
 					aria-haspopup="true"
 					color="inherit"
-					onClick={handleClick}>
+					onClick={handleClick}
+				>
 					<AccountCircleIcon />
 				</Button>
 				<Menu
@@ -60,16 +61,18 @@ const Navbar = () => {
 					anchorEl={anchorEl}
 					keepMounted
 					open={Boolean(anchorEl)}
-					onClose={handleClose}>
+					onClose={handleClose}
+				>
 					{/* <MenuItem onClick={handleClose}>Profile</MenuItem> */}
-					<Link href="/profile">
+					<Link href={`/profile/${auth.user.userId}`}>
 						<MenuItem onClick={handleClose}>Your Profile</MenuItem>
 					</Link>
 					<MenuItem
 						onClick={() => {
 							handleClose();
 							logout();
-						}}>
+						}}
+					>
 						Logout
 					</MenuItem>
 				</Menu>
