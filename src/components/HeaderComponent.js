@@ -22,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 const Navbar = () => {
 	const auth = useSelector((state) => state.auth);
+	const user = useSelector((state) => state.user);
 	const [anchorEl, setAnchorEl] = React.useState(null);
 
 	const handleClick = (event) => {
@@ -64,7 +65,7 @@ const Navbar = () => {
 					onClose={handleClose}
 				>
 					{/* <MenuItem onClick={handleClose}>Profile</MenuItem> */}
-					<Link href={`/profile/${auth.user.userId}`}>
+					<Link href={`/profile/${user.userId}`}>
 						<MenuItem onClick={handleClose}>Your Profile</MenuItem>
 					</Link>
 					<MenuItem

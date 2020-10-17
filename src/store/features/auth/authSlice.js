@@ -189,9 +189,10 @@ export const logoutUser = () => (dispatch) => {
 			if (response.success) {
 				console.log("response.success");
 				localStorage.removeItem("token");
+				localStorage.removeItem("userId");
 				dispatch(receiveLogout());
 			} else {
-				console.log("resopnse.error");
+				// console.log("resopnse.error");
 				var error = new Error("Error " + response.status);
 				error.response = response;
 				// alert(error.message);

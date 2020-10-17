@@ -18,27 +18,32 @@ function Main() {
 	const dispatch = useDispatch();
 
 	//component did mount
+	// useEffect(() => {
+	// 	if (auth.isAuthenticated) {
+	// 		//get all the information at the starting
+	// 		dispatch(
+	// 			loginUser({
+	// 				//this is just for a test, remove it later
+	// 				username: "nikrth",
+	// 				password: "python1234",
+	// 			})
+	// 		);
+	// 	}
+	// }, []);
 	useEffect(() => {
 		if (auth.isAuthenticated) {
-			//get all the information at the starting
-			dispatch(
-				loginUser({
-					username: "nikrth",
-					password: "python1234",
-				})
-			);
 			dispatch(fetchUser());
 		}
-	}, []);
+	}, [auth]);
 
 	return (
 		<Router>
 			<Navbar />
 			<Container>
-				<Route exact path="/" component={Landing} />{" "}
-				<PrivateRoute path="/home" component={HomePage} />{" "}
-				<PrivateRoute path="/profile/:userId" component={Profile} />{" "}
-			</Container>{" "}
+				<Route exact path="/" component={Landing} />
+				<PrivateRoute path="/home" component={HomePage} />
+				<PrivateRoute path="/profile/:userId" component={Profile} />
+			</Container>
 		</Router>
 	);
 }

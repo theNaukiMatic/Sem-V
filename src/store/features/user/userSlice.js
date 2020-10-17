@@ -74,13 +74,14 @@ export const fetchUser = () => (dispatch) => {
 				}
 			},
 			(error) => {
+				console.log("reached error!");
 				throw error;
 			}
 		)
 		.then((response) => response.json())
 		.then((response) => {
 			if (response.success) {
-				dispatch(recieveUser(response));
+				dispatch(recieveUser(response.user));
 			} else {
 				var error = new Error("Error " + response.status);
 				error.response = response;
@@ -88,7 +89,7 @@ export const fetchUser = () => (dispatch) => {
 				throw error;
 			}
 		})
-		.catch((error) => dispatch(userError(error.message)));
+		.catch((error) => dispatch(userError(error)));
 };
 
 export default userSlice.reducer;

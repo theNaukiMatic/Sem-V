@@ -19,10 +19,10 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const ProfileLeft = ({ userProfile, auth }) => {
+const ProfileLeft = ({ user }) => {
 	const classes = useStyles();
 
-	const FirstName = auth.user.firstName;
+	const FirstName = user.user.firstname;
 	const LastName = "LastName";
 	const Designation = "Developer";
 	const profileImage = "";
