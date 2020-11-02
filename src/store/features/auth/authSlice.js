@@ -8,12 +8,12 @@ const authSlice = createSlice({
 		isAuthenticated: localStorage.getItem("token") ? true : false,
 		token: localStorage.getItem("token"),
 		userId: localStorage.getItem("userId"),
-		user: {
-			userId: null,
-			firstName: null,
-			lastName: null,
-			email: null,
-		},
+		// user: {
+		// 	userId: null,
+		// 	firstName: null,
+		// 	lastName: null,
+		// 	email: null,
+		// },
 		errMess: null,
 		//new proper intial state:
 		//remove user with userId
@@ -24,7 +24,7 @@ const authSlice = createSlice({
 			...state,
 			isLoading: true,
 			isAuthenticated: false,
-			user: action.creds,
+			// user: action.creds,
 		}),
 		loginSuccess: (state, action) => ({
 			...state,
@@ -32,7 +32,7 @@ const authSlice = createSlice({
 			isAuthenticated: true,
 			errMess: "",
 			token: action.token,
-			user: action.user,
+			// user: action.user,
 			userId: action.user.userId,
 		}),
 		loginFailed: (state, action) => ({
@@ -53,12 +53,12 @@ const authSlice = createSlice({
 			isLoading: false,
 			isAuthenticated: false,
 			token: "",
-			user: {
-				id: null,
-				firstName: null,
-				lastName: null,
-				email: null,
-			},
+			// user: {
+			// 	id: null,
+			// 	firstName: null,
+			// 	lastName: null,
+			// 	email: null,
+			// },
 		}),
 	},
 });

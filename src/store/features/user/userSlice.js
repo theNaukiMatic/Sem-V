@@ -18,13 +18,14 @@ const userSlice = createSlice({
 		userRequest: (state, action) => ({
 			...state,
 			isLoading: true,
-			userId: action.userId,
+			// userId: action.userId,
 		}),
 		userSuccess: (state, action) => ({
 			...state,
 			isLoading: false,
 			user: action.user,
 			errMess: null,
+			success: true,
 		}),
 		userFailed: (state, action) => ({
 			...state,
@@ -37,9 +38,9 @@ export const { userRequest, userFailed, userSuccess } = userSlice.actions;
 
 //action creators
 
-export const requestUser = (userId) => ({
+export const requestUser = () => ({
 	type: userRequest.type,
-	userId,
+	// userId,
 });
 export const recieveUser = (response) => ({
 	type: userSuccess.type,
@@ -52,7 +53,7 @@ export const userError = (message) => ({
 
 export const fetchUser = () => (dispatch) => {
 	const userId = localStorage.getItem("userId");
-	dispatch(requestUser(userId));
+	dispatch(requestUser());
 	const bearer = "Bearer " + localStorage.getItem("token");
 	return fetch(baseUrl + `users/profile/${userId}`, {
 		method: "Get",
@@ -81,7 +82,7 @@ export const fetchUser = () => (dispatch) => {
 		.then((response) => response.json())
 		.then((response) => {
 			if (response.success) {
-				dispatch(recieveUser(response.user));
+				dispatch(recieveUser(response));
 			} else {
 				var error = new Error("Error " + response.status);
 				error.response = response;

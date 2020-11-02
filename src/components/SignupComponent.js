@@ -63,8 +63,8 @@ export default function SignUp(props) {
 			username: username,
 			password: password,
 			// email: email,
-			firstName: firstName,
-			lastName: lastName,
+			firstname: firstName,
+			lastname: lastName,
 		};
 		console.log(creds);
 		dispatch(signUpUser(creds));

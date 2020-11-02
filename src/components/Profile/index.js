@@ -8,10 +8,15 @@ import { useDispatch, useSelector } from "react-redux";
 const Profile = ({ match }) => {
 	const [userId, setUserId] = useState(match.params.userId);
 
+	const dispatch = useDispatch();
+	useEffect(() => {
+		dispatch(getProfile(userId));
+	}, [userId]);
+
 	const userProfile = useSelector((state) => state.profile);
 	const user = useSelector((state) => state.user);
 	// const userId = match.params.userId;
-	const dispatch = useDispatch();
+
 	return (
 		<Grid container direction="row" spacing={2} alignItems="stretch">
 			<Grid item xs={12} sm={4}>

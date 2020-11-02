@@ -9,27 +9,14 @@ import LandingPage from "./Landing";
 import PrivateRoute from "./PrivateRoute";
 
 import { useSelector, useDispatch } from "react-redux";
-import { loginUser } from "../store/features/auth/authSlice";
+// import { loginUser } from "../store/features/auth/authSlice";
 import { fetchUser } from "../store/features/user/userSlice";
 
 function Main() {
-	const user = useSelector((state) => state.user);
+	// const user = useSelector((state) => state.user);
 	const auth = useSelector((state) => state.auth);
 	const dispatch = useDispatch();
 
-	//component did mount
-	// useEffect(() => {
-	// 	if (auth.isAuthenticated) {
-	// 		//get all the information at the starting
-	// 		dispatch(
-	// 			loginUser({
-	// 				//this is just for a test, remove it later
-	// 				username: "nikrth",
-	// 				password: "python1234",
-	// 			})
-	// 		);
-	// 	}
-	// }, []);
 	useEffect(() => {
 		if (auth.isAuthenticated) {
 			dispatch(fetchUser());

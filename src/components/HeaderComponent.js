@@ -65,7 +65,7 @@ const Navbar = () => {
 					onClose={handleClose}
 				>
 					{/* <MenuItem onClick={handleClose}>Profile</MenuItem> */}
-					<Link href={`/profile/${user.userId}`}>
+					<Link href={`/profile/${localStorage.getItem("userId")}`}>
 						<MenuItem onClick={handleClose}>Your Profile</MenuItem>
 					</Link>
 					<MenuItem
