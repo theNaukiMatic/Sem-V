@@ -46,9 +46,20 @@ const Navbar = () => {
 			<Toolbar>
 				<GitHubIcon className={classes.menuButton} />
 				<Typography variant="h6" className={classes.title}>
-					AppName
+					<Link href="/home" color="inherit" variant="inherit">
+						AppName
+					</Link>
 				</Typography>
-				<Button color="inherit">Login</Button>
+				<Button color="inherit" variant="inherit">
+					<Link color="inherit" variant="inherit" href="#">
+						Search
+					</Link>
+				</Button>
+				<Button color="inherit" variant="inherit">
+					<Link color="inherit" variant="inherit" href="/groups">
+						Groups
+					</Link>
+				</Button>
 				<Button
 					aria-controls="simple-menu"
 					aria-haspopup="true"

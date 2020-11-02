@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import HomePage from "./Home";
 import Loading from "./LoadingComponent";
 import LandingPage from "./Landing";
+import Group from "./Groups";
 import PrivateRoute from "./PrivateRoute";
 
 import { useSelector, useDispatch } from "react-redux";
@@ -30,6 +31,7 @@ function Main() {
 				<Route exact path="/" component={Landing} />
 				<PrivateRoute path="/home" component={HomePage} />
 				<PrivateRoute path="/profile/:userId" component={Profile} />
+				<PrivateRoute path="/groups" component={Group} />
 			</Container>
 		</Router>
 	);
