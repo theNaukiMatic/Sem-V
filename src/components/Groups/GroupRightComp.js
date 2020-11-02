@@ -6,7 +6,9 @@ import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { Grid, Avatar, Box, TextField } from "@material-ui/core";
-
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { createGroup } from "../../store/features/groups/joinGroupSlice";
 const useStyles = makeStyles((theme) => ({
 	pos: {
 		marginBottom: 12,
@@ -26,6 +28,20 @@ const useStyles = makeStyles((theme) => ({
 
 const GroupRight = () => {
 	const classes = useStyles();
+	const dispatch = useDispatch();
+	const [groupId, setGroupId] = useState("");
+	const [groupName, setGroupName] = useState("");
+	const [groupDesc, setGroupDesc] = useState("");
+
+	const handleSubmitCreate = (e) => {
+		e.preventDefault();
+		const groupData = {
+			name: groupName,
+			description: groupDesc,
+		};
+		dispatch(createGroup(groupData));
+	};
+
 	return (
 		<div>
 			<br />
@@ -48,7 +64,7 @@ const GroupRight = () => {
 						<form
 							className={classes.form}
 							noValidate
-							// onSubmit={handleSubmit}
+							// onSubmit={handleSubmitCreate}
 						>
 							<Typography>
 								{" "}
@@ -56,7 +72,12 @@ const GroupRight = () => {
 									id="groupId"
 									label="Group Id"
 									variant="outlined"
+									margin="normal"
+									required
 									fullWidth
+									autoFocus
+									value={groupId}
+									onChange={(e) => setGroupId(e.target.value)}
 								/>
 								<Box display="flex" flexDirection="column">
 									<Button
@@ -73,6 +94,7 @@ const GroupRight = () => {
 					</Box>
 				</CardContent>
 			</Card>
+
 			<br />
 			<br />
 
@@ -94,47 +116,46 @@ const GroupRight = () => {
 						<form
 							className={classes.form}
 							noValidate
-							// onSubmit={handleSubmit}
+							onSubmit={handleSubmitCreate}
 						>
 							{/* <Typography> */}{" "}
 							<Grid container spacing={2}>
 								<Grid item xs={12} sm={12}>
 									<TextField
-										autoComplete="uname"
-										name="userName"
+										name="groupName"
 										variant="outlined"
 										required
 										fullWidth
-										id="userName"
+										id="groupName"
 										label="Group Name"
 										autoFocus
-										// value={username}
-										// onChange={(e) =>
-										// 	setUsername(e.target.value)
-										// }
+										value={groupName}
+										onChange={(e) =>
+											setGroupName(e.target.value)
+										}
 									/>
 								</Grid>
 								<Grid item xs={12} sm={12}>
 									<TextField
-										autoComplete="fname"
-										name="firstName"
+										name="groupDesc"
 										variant="outlined"
 										required
 										fullWidth
-										id="firstName"
+										id="groupDesc"
 										label="Description"
-										autoFocus
+										// autoFocus
 										multiline
 										rows={2}
-										// value={firstName}
-										// onChange={(e) =>
-										// 	setFirstName(e.target.value)
-										// }
+										value={groupDesc}
+										onChange={(e) =>
+											setGroupDesc(e.target.value)
+										}
 									/>
 								</Grid>
 							</Grid>
 							<Box display="flex" flexDirection="column">
 								<Button
+									type="submit"
 									className={classes.submit}
 									variant="contained"
 									justify="flex-end"

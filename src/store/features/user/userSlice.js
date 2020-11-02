@@ -12,6 +12,7 @@ const userSlice = createSlice({
 			firstName: null,
 			lastName: null,
 			email: null,
+			groups: [],
 		},
 	},
 	reducers: {
