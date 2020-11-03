@@ -51,7 +51,7 @@ const Navbar = () => {
 					</Link>
 				</Typography>
 				<Button color="inherit" variant="inherit">
-					<Link color="inherit" variant="inherit" href="#">
+					<Link color="inherit" variant="inherit" href="/search">
 						Search
 					</Link>
 				</Button>

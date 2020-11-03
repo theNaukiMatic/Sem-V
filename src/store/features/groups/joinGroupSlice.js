@@ -120,16 +120,60 @@ export const createGroup = (groupData) => (dispatch) => {
 		.catch((error) => dispatch(createGroupError(error.message)));
 };
 //join group action creators
-export const requestJoinGroup = (groupData) => ({
+export const requestJoinGroup = (groupId) => ({
 	type: createGroupRequest.type,
-	groupData,
+	groupId,
 });
 export const recieveJoinGroup = (response) => ({
 	type: createGroupSuccess.type,
 	groupData: response,
 });
-export const createGroupError = (message) => ({
+export const joinGroupError = (message) => ({
 	type: createGroupFailed.type,
 	message,
 });
+
+export const joinGroup = (groupId) => (dispatch) => {
+	dispatch(requestJoinGroup(groupId));
+	const bearer = "Bearer " + localStorage.getItem("token");
+	return fetch(baseUrl + `joinGroup/${groupId}`, {
+		method: "Post",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: bearer,
+		},
+		body: JSON.stringify(groupId),
+	})
+		.then(
+			(response) => {
+				if (response.ok) {
+					return response;
+				} else {
+					var error = new Error(
+						"Error" + response.status + ": " + response.statusText
+					);
+					alert(error);
+					error.response = response;
+					throw error;
+				}
+			},
+			(error) => {
+				throw error;
+			}
+		)
+		.then((response) => response.json())
+		.then((response) => {
+			if (response.success) {
+				dispatch(recieveJoinGroup(response));
+				dispatch(fetchUser());
+			} else {
+				var error = new Error("Error " + response.status);
+				error.response = response;
+				console.log(error);
+				alert(error.message);
+				throw error;
+			}
+		})
+		.catch((error) => dispatch(joinGroupError(error.message)));
+};
 export default joinGroupSlice.reducer;

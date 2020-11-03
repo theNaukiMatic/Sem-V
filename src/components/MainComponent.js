@@ -8,6 +8,7 @@ import Loading from "./LoadingComponent";
 import LandingPage from "./Landing";
 import Group from "./Groups";
 import PrivateRoute from "./PrivateRoute";
+import Search from "./Search";
 
 import { useSelector, useDispatch } from "react-redux";
 // import { loginUser } from "../store/features/auth/authSlice";
@@ -32,6 +33,7 @@ function Main() {
 				<PrivateRoute path="/home" component={HomePage} />
 				<PrivateRoute path="/profile/:userId" component={Profile} />
 				<PrivateRoute path="/groups" component={Group} />
+				<PrivateRoute path="/search" component={Search} />
 			</Container>
 		</Router>
 	);
