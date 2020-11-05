@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
@@ -16,6 +16,7 @@ import {
 	Container,
 } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
+import { searchUser } from "../../store/features/search/searchUserSlice";
 const useStyles = makeStyles({
 	root: {
 		height: 300,
@@ -27,8 +28,17 @@ const useStyles = makeStyles({
 });
 
 const SearchLeft = () => {
+	const [searchInput, setSearchInput] = useState("");
 	const classes = useStyles();
+	const dispatch = useDispatch();
 	const user = useSelector((state) => state.user);
+	const handleSubmitUser = (e) => {
+		e.preventDefault();
+		const searchTerm = {
+			argument: searchInput,
+		};
+		dispatch(searchUser(searchTerm));
+	};
 	return (
 		<div>
 			<br />
@@ -62,8 +72,10 @@ const SearchLeft = () => {
 										required
 										fullWidth
 										autoFocus
-										// value={groupId}
-										// onChange={(e) => setGroupId(e.target.value)}
+										value={searchInput}
+										onChange={(e) =>
+											setSearchInput(e.target.value)
+										}
 									/>
 								</Grid>
 								<Grid
@@ -80,6 +92,7 @@ const SearchLeft = () => {
 											justify="flex-end"
 											inline
 											color="secondary"
+											onClick={(e) => handleSubmitUser(e)}
 										>
 											<div
 												style={{
