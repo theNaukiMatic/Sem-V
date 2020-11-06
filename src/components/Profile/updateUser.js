@@ -89,9 +89,10 @@ const UpdateUser = () => {
 	const [lastName, setLastName] = useState(user.user.lastname);
 	const [bio, setBio] = useState(user.user.bio);
 	const [designation, setDesignation] = useState(user.user.designation);
-	const [skills, setSkills] = useState(["helloi", "fdajshlf", "ioioadsf"]);
+	const [skills, setSkills] = useState(user.user.skills);
 	const addSkill = (e) => {
 		e.preventDefault();
+		if (newSkill === "") return;
 		setSkills([...skills, newSkill]);
 		console.log("add skill : " + newSkill);
 		setNewSkill("");
