@@ -11,6 +11,8 @@ const userSlice = createSlice({
 			id: null,
 			firstName: null,
 			lastName: null,
+			bio: null,
+			designation: null,
 			email: null,
 			groups: [],
 		},

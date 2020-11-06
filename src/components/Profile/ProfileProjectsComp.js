@@ -32,7 +32,8 @@ const NoProjects = (props) => {
 					<Typography
 						variant="h5"
 						align="center"
-						style={{ color: "gray", padding: "20" }}>
+						style={{ color: "gray", padding: "20" }}
+					>
 						{" "}
 						{props.nickName} has not posted any projects yet!{" "}
 					</Typography>
@@ -80,7 +81,8 @@ const ProfilePosts = () => {
 							<span>
 								<li
 									key={data.id}
-									style={{ listStyleType: "none" }}>
+									style={{ listStyleType: "none" }}
+								>
 									<ProjectCard project={data} />
 								</li>
 								<br />

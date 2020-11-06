@@ -7,11 +7,14 @@ import {
 	CardMedia,
 	Box,
 	Button,
+	Container,
 } from "@material-ui/core";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import { makeStyles } from "@material-ui/core/styles";
+import { updateUser } from "../../store/features/user/updateUserSlice";
+import Chip from "@material-ui/core/Chip";
+import DoneIcon from "@material-ui/icons/Done";
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -40,14 +43,83 @@ const useStyles = makeStyles((theme) => ({
 		width: 38,
 	},
 }));
+const Skills = (props) => {
+	//chip add and remoce funtions
+	const handleDelete = (skill) => {
+		props.deleteSkill(skill);
+	};
 
+	return (
+		<Box
+			padding={2}
+			style={{
+				display: "flex",
+				flexDirection: "row",
+			}}
+		>
+			{props.skills.map((skill) => {
+				return (
+					<span>
+						<li
+							key={skill}
+							style={{
+								listStyleType: "none",
+								margin: 2,
+							}}
+						>
+							<Chip
+								label={skill}
+								clickable
+								color="primary"
+								onDelete={() => handleDelete(skill)}
+							/>
+						</li>
+					</span>
+				);
+			})}
+		</Box>
+	);
+};
 const UpdateUser = () => {
 	const classes = useStyles();
+	const dispatch = useDispatch();
+
 	const user = useSelector((state) => state.user);
 	const [firstName, setFirstName] = useState(user.user.firstname);
 	const [lastName, setLastName] = useState(user.user.lastname);
 	const [bio, setBio] = useState(user.user.bio);
 	const [designation, setDesignation] = useState(user.user.designation);
+	const [skills, setSkills] = useState(["helloi", "fdajshlf", "ioioadsf"]);
+	const addSkill = (e) => {
+		e.preventDefault();
+		setSkills([...skills, newSkill]);
+		console.log("add skill : " + newSkill);
+		setNewSkill("");
+	};
+
+	const [newSkill, setNewSkill] = useState("");
+
+	const handleSubmit = (e) => {
+		const creds = {
+			firstname: firstName,
+			lastname: lastName,
+			bio: bio,
+			designation: designation,
+			rating: 4,
+			skills: [],
+			skillDesc: "",
+			experience: {},
+			reviews: [],
+		};
+		console.log(creds);
+		dispatch(updateUser(creds));
+	};
+	const deleteSkill = (x) => {
+		console.log("delete Skill : " + x);
+		// setSkills((state) => [...state, "test"]);
+		setSkills(skills.filter((item) => item !== x));
+	};
+
 	return (
 		<div>
 			<Grid item>
@@ -59,6 +131,7 @@ const UpdateUser = () => {
 					component="label"
 					color="secondary"
 					// paddingLeft={60}
+					onClick={(e) => handleSubmit(e)}
 				>
 					Update Profile
 				</Button>
@@ -211,15 +284,16 @@ const UpdateUser = () => {
 											variant="outlined"
 											margin="normal"
 											fullWidth
-											value={firstName}
+											value={newSkill}
 											onChange={(e) =>
-												setFirstName(e.target.value)
+												setNewSkill(e.target.value)
 											}
 										/>
 										<Button
 											variant="contained"
 											component="label"
 											color="secondary"
+											onClick={addSkill}
 										>
 											Add Skill
 										</Button>
@@ -229,7 +303,12 @@ const UpdateUser = () => {
 											borderColor="grey.400"
 											border={1}
 											height="100%"
-										></Box>
+										>
+											<Skills
+												skills={skills}
+												deleteSkill={deleteSkill}
+											/>
+										</Box>
 									</Grid>
 								</Grid>
 							</Grid>
@@ -269,15 +348,16 @@ const UpdateUser = () => {
 											variant="outlined"
 											margin="normal"
 											fullWidth
-											value={firstName}
+											value={newSkill}
 											onChange={(e) =>
-												setFirstName(e.target.value)
+												setNewSkill(e.target.value)
 											}
 										/>
 										<Button
 											variant="contained"
 											component="label"
 											color="secondary"
+											onClick={addSkill}
 										>
 											Add Skill
 										</Button>
@@ -287,7 +367,12 @@ const UpdateUser = () => {
 											borderColor="grey.400"
 											border={1}
 											height="100%"
-										></Box>
+										>
+											<Skills
+												skills={skills}
+												deleteSkill={deleteSkill}
+											/>
+										</Box>
 									</Grid>
 								</Grid>
 							</Grid>

@@ -26,8 +26,8 @@ const ProfileLeft = ({ user }) => {
 		editable = "visible";
 	}
 	const FirstName = user.user.firstname;
-	const LastName = "LastName";
-	const Designation = "Developer";
+	const LastName = user.user.lastname;
+	const Designation = user.user.designation + "testDesignation";
 	const profileImage = "";
 
 	const [rating, setRating] = React.useState(3);
@@ -45,7 +45,13 @@ const ProfileLeft = ({ user }) => {
 							/>
 						</div>
 						<br />
-						<br />
+						<Typography
+							className={classes.pos}
+							color="textSecondary"
+							align="center"
+						>
+							@{user.user.username}
+						</Typography>
 						<Typography variant="h4" component="h2" align="center">
 							{FirstName} {LastName}
 						</Typography>
@@ -56,15 +62,11 @@ const ProfileLeft = ({ user }) => {
 						>
 							{Designation}
 						</Typography>
+
 						<br />
 
 						<Typography variant="body2" component="p">
-							blah blah balh balhadfhlkasdhjfklhafkl;
-							kljadfkljdsakjfhdjals fdsahfkjsadfkjsakf hjasdfklj
-							<br />
-							no of projects, vagera
-							<br />
-							{'"hahaha lolo dlfklsadhfkdlahsfkldhaksflhoie"'}
+							{user.user.bio}
 						</Typography>
 					</Grid>
 					<br />
