@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { baseUrl } from "../../../baseUrl";
-import fetchUser from "../user/userSlice";
+import { fetchUser } from "../user/userSlice";
 
 const joinGroupSlice = createSlice({
 	name: "joinGroup",

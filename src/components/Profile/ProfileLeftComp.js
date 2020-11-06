@@ -5,7 +5,7 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import { Grid, Avatar, Box } from "@material-ui/core";
+import { Grid, Avatar, Box, Hidden, Link } from "@material-ui/core";
 
 import Rating from "@material-ui/lab/Rating";
 
@@ -21,7 +21,10 @@ const useStyles = makeStyles((theme) => ({
 
 const ProfileLeft = ({ user }) => {
 	const classes = useStyles();
-
+	let editable = "hidden";
+	if (localStorage.getItem("userId") === user.user.userId) {
+		editable = "visible";
+	}
 	const FirstName = user.user.firstname;
 	const LastName = "LastName";
 	const Designation = "Developer";
@@ -72,9 +75,13 @@ const ProfileLeft = ({ user }) => {
 				</Box>
 			</CardContent>
 			<CardActions>
-				<Button size="small" color="secondary">
-					Edit Profile
-				</Button>
+				<Box visibility={editable}>
+					<Link href="/editProfile">
+						<Button size="small" color="secondary">
+							Edit Profile
+						</Button>
+					</Link>
+				</Box>
 			</CardActions>
 		</Card>
 	);

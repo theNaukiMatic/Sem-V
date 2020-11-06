@@ -1,5 +1,6 @@
 import React from "react";
 import SignIn from "../LoginComponent";
+
 import {
 	Card,
 	Container,
@@ -35,7 +36,8 @@ const LandingPage = () => {
 								variant="h1"
 								align="center"
 								color="primary"
-								display="block">
+								display="block"
+							>
 								App Name
 							</Typography>
 						</Paper>
