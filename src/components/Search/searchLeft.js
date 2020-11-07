@@ -6,6 +6,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import SearchIcon from "@material-ui/icons/Search";
+import SearchUserRes from "./userResult";
 import {
 	Grid,
 	Avatar,
@@ -31,6 +32,7 @@ const SearchLeft = () => {
 	const [searchInput, setSearchInput] = useState("");
 	const classes = useStyles();
 	const dispatch = useDispatch();
+	const [showUser, setShowUser] = useState("hidden");
 	const user = useSelector((state) => state.user);
 	const handleSubmitUser = (e) => {
 		e.preventDefault();
@@ -38,7 +40,9 @@ const SearchLeft = () => {
 			argument: searchInput,
 		};
 		dispatch(searchUser(searchTerm));
+		setShowUser("visible");
 	};
+
 	return (
 		<div>
 			<br />
@@ -155,6 +159,9 @@ const SearchLeft = () => {
 					</Container>
 				</CardContent>
 			</Card>
+			<Box visibility={showUser}>
+				<SearchUserRes />
+			</Box>
 		</div>
 	);
 };

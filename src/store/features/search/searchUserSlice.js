@@ -5,7 +5,7 @@ const searchUserSlice = createSlice({
 	name: "searchUser",
 	initialState: {
 		isLoading: false,
-		user: null,
+		userData: [],
 		errMess: null,
 	},
 	reducers: {
@@ -18,7 +18,8 @@ const searchUserSlice = createSlice({
 			...state,
 			isLoading: false,
 			errMess: "",
-			userData: action,
+			userData: action.userData,
+			success: true,
 		}),
 		searchUserFailed: (state, action) => ({
 			...state,
@@ -42,7 +43,8 @@ export const requestSearchUser = (groupData) => ({
 });
 export const recieveSearchUser = (response) => ({
 	type: searchUserSuccess.type,
-	userData: response.userData,
+	userData: response,
+	success: true,
 });
 export const searchUserError = (message) => ({
 	type: searchUserFailed.type,
@@ -87,8 +89,8 @@ export const searchUser = (searchTerm) => (dispatch) => {
 					console.log(response);
 					// response.userdata.slice(0, -2);
 					// response.json();
-					console.log(response.userdata);
-					dispatch(recieveSearchUser(response));
+					console.log(response);
+					dispatch(recieveSearchUser(response.user));
 				} else {
 					var error = new Error("Error " + response.status);
 					error.response = response;

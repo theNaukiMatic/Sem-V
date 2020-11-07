@@ -70,7 +70,7 @@ const Skills = (props) => {
 							<Chip
 								label={skill}
 								clickable
-								color="primary"
+								// color="primary"
 								onDelete={() => handleDelete(skill)}
 							/>
 						</li>
@@ -293,7 +293,7 @@ const UpdateUser = () => {
 										<Button
 											variant="contained"
 											component="label"
-											color="secondary"
+											color="primary"
 											onClick={addSkill}
 										>
 											Add Skill

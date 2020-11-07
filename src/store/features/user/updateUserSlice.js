@@ -19,6 +19,7 @@ const updateUserSlice = createSlice({
 			...state,
 			isLoading: false,
 			errMess: "",
+			success: true,
 		}),
 		updateUserFailed: (state, action) => ({
 			...state,
