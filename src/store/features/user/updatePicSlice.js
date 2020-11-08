@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { baseUrl } from "../../../baseUrl";
 import { fetchUser } from "../user/userSlice";
+const axios = require("axios");
 
 const updatePicSlice = createSlice({
 	name: "updatePic",
@@ -42,53 +43,30 @@ export const requestUpdatePic = () => ({
 export const receiveUpdatePic = () => ({
 	type: updatePicSuccess.type,
 });
-export const updatePicError = (message) => ({
+export const updatePicError = () => ({
 	type: updatePicFailed.type,
-	message,
+	// message,
 });
 
 export const updatePic = (pic) => (dispatch) => {
-	console.log("signUpuseriscalled");
-	dispatch(requestUpdatePic());
+	// console.log("signUpuseriscalled");
 	const bearer = "Bearer " + localStorage.getItem("token");
-	return fetch(baseUrl + "imageUpload", {
-		method: "Post",
+	requestUpdatePic();
+	const formData = new FormData();
+	formData.append("imageFile", pic);
+	const config = {
 		headers: {
-			"Content-Type": "multipart/form-data",
+			"content-type": "multipart/form-data",
 			Authorization: bearer,
 		},
-		body: JSON.stringify(pic),
-	})
-		.then(
-			(response) => {
-				if (response.ok) {
-					return response;
-				} else {
-					var error = new Error(
-						"Error" + response.status + ": " + response.statusText
-					);
-					error.response = response;
-					throw error;
-				}
-			},
-			(error) => {
-				throw error;
-			}
-		)
-		.then((response) => response.json())
+	};
+	axios
+		.post(baseUrl + "imageUpload", formData, config)
 		.then((response) => {
-			if (response.success) {
-				dispatch(receiveUpdatePic());
-
-				dispatch(fetchUser());
-			} else {
-				var error = new Error("Error " + response.status);
-				error.response = response;
-				console.log(error);
-				alert(error.message);
-				throw error;
-			}
+			receiveUpdatePic();
 		})
-		.catch((error) => dispatch(updatePicError(error.message)));
+		.catch((error) => {
+			updatePicFailed();
+		});
 };
 export default updatePicSlice.reducer;

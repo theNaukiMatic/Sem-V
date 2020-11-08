@@ -41,7 +41,7 @@ const GroupLeft = () => {
 									<CardMedia
 										className={classes.media}
 										image="/static/images/cards/contemplative-reptile.jpg"
-										title="Contemplative Reptile"
+										title={group.name}
 									/>
 									<CardContent>
 										<Typography

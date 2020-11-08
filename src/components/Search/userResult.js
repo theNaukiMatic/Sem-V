@@ -12,6 +12,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "../LoadingComponent";
 import NightsStayIcon from "@material-ui/icons/NightsStay";
+import { baseUrl } from "../../baseUrl";
 
 const useStyles = makeStyles({
 	root: {
@@ -49,7 +50,6 @@ const NoResults = () => {
 		</Box>
 	);
 };
-
 const SearchUserRes = () => {
 	const classes = useStyles();
 	const [showLoading, setShowLoading] = useState(false);
@@ -94,7 +94,7 @@ const SearchUserRes = () => {
 									>
 										<CardMedia
 											className={classes.media}
-											image="/static/images/cards/contemplative-reptile.jpg"
+											image={baseUrl + user.imgname}
 											title="Contemplative Reptile"
 										/>
 										<CardContent>

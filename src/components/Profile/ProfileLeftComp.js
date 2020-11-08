@@ -1,4 +1,5 @@
 import React from "react";
+import { baseUrl } from "../../baseUrl";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
@@ -28,7 +29,7 @@ const ProfileLeft = ({ user }) => {
 	const FirstName = user.user.firstname;
 	const LastName = user.user.lastname;
 	const Designation = user.user.designation;
-	const profileImage = "";
+	const profileImage = user.user.imgname;
 
 	const [rating, setRating] = React.useState(3);
 
@@ -39,8 +40,8 @@ const ProfileLeft = ({ user }) => {
 					<Grid item>
 						<div align="center">
 							<Avatar
-								alt="Sample Profile Pic"
-								src={profileImage}
+								alt={FirstName}
+								src={baseUrl + profileImage}
 								className={classes.large}
 							/>
 						</div>

@@ -17,6 +17,7 @@ import { fetchUser } from "../../store/features/user/userSlice";
 import Chip from "@material-ui/core/Chip";
 import DoneIcon from "@material-ui/icons/Done";
 import Loading from "../LoadingComponent";
+import { updatePic } from "../../store/features/user/updatePicSlice";
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -102,9 +103,16 @@ const UpdateUserHelper = () => {
 	const [firstName, setFirstName] = useState(user.user.firstname);
 	const [lastName, setLastName] = useState(user.user.lastname);
 	const [bio, setBio] = useState(user.user.bio);
-	console.log(user.user.bio);
 	const [designation, setDesignation] = useState(user.user.designation);
 	const [skills, setSkills] = useState(user.user.skills);
+
+	const [image, setImage] = useState(null);
+	const uploadImage = () => {
+		const data = {
+			imageFile: image,
+		};
+		dispatch(updatePic(image));
+	};
 	const addSkill = (e) => {
 		e.preventDefault();
 		if (newSkill === "") return;
@@ -243,6 +251,10 @@ const UpdateUserHelper = () => {
 										<input
 											type="file"
 											style={{ display: "none" }}
+											// value={image}
+											onChange={(e) =>
+												setImage(e.target.files[0])
+											}
 										/>
 									</Button>
 									<br />
@@ -251,6 +263,7 @@ const UpdateUserHelper = () => {
 										variant="contained"
 										component="label"
 										color="secondary"
+										onClick={uploadImage}
 									>
 										Update Image
 									</Button>
