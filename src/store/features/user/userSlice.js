@@ -56,6 +56,7 @@ export const userError = (message) => ({
 });
 
 export const fetchUser = () => (dispatch) => {
+	console.log("fetch Users");
 	const userId = localStorage.getItem("userId");
 	dispatch(requestUser());
 	const bearer = "Bearer " + localStorage.getItem("token");

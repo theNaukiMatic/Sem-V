@@ -27,7 +27,7 @@ const ProfileLeft = ({ user }) => {
 	}
 	const FirstName = user.user.firstname;
 	const LastName = user.user.lastname;
-	const Designation = user.user.designation + "testDesignation";
+	const Designation = user.user.designation;
 	const profileImage = "";
 
 	const [rating, setRating] = React.useState(3);

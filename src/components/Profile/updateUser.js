@@ -13,8 +13,10 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import { updateUser } from "../../store/features/user/updateUserSlice";
+import { fetchUser } from "../../store/features/user/userSlice";
 import Chip from "@material-ui/core/Chip";
 import DoneIcon from "@material-ui/icons/Done";
+import Loading from "../LoadingComponent";
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -81,13 +83,26 @@ const Skills = (props) => {
 	);
 };
 const UpdateUser = () => {
+	const user = useSelector((state) => state.user);
+	if (user.isLoading) {
+		return <Loading />;
+	} else if (user.success) {
+		return <UpdateUserHelper />;
+	} else return <div></div>;
+};
+const UpdateUserHelper = () => {
 	const classes = useStyles();
 	const dispatch = useDispatch();
 
 	const user = useSelector((state) => state.user);
+
+	// useEffect(() => {
+	// 	dispatch(fetchUser());
+	// }, []);
 	const [firstName, setFirstName] = useState(user.user.firstname);
 	const [lastName, setLastName] = useState(user.user.lastname);
 	const [bio, setBio] = useState(user.user.bio);
+	console.log(user.user.bio);
 	const [designation, setDesignation] = useState(user.user.designation);
 	const [skills, setSkills] = useState(user.user.skills);
 	const addSkill = (e) => {
@@ -107,7 +122,7 @@ const UpdateUser = () => {
 			bio: bio,
 			designation: designation,
 			rating: 4,
-			skills: [],
+			skills: skills,
 			skillDesc: "",
 			experience: {},
 			reviews: [],
