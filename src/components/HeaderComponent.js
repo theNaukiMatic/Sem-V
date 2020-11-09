@@ -76,14 +76,19 @@ const Navbar = () => {
 						open={Boolean(anchorEl)}
 						onClose={handleClose}
 					>
-						{/* <MenuItem onClick={handleClose}>Profile</MenuItem> */}
-						<Link
-							href={`/profile/${localStorage.getItem("userId")}`}
-						>
-							<MenuItem onClick={handleClose}>
+						<MenuItem onClick={handleClose}>
+							<Link
+								href={`/profile/${localStorage.getItem(
+									"userId"
+								)}`}
+							>
 								Your Profile
-							</MenuItem>
-						</Link>
+							</Link>
+						</MenuItem>
+						<MenuItem onClick={handleClose} href={"/editProfile"}>
+							<Link href="/editProfile">Edit Profile</Link>
+						</MenuItem>
+
 						<MenuItem
 							onClick={() => {
 								handleClose();

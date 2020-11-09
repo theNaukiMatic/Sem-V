@@ -18,6 +18,7 @@ import Chip from "@material-ui/core/Chip";
 import DoneIcon from "@material-ui/icons/Done";
 import Loading from "../LoadingComponent";
 import { updatePic } from "../../store/features/user/updatePicSlice";
+import { baseUrl } from "../../baseUrl";
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -274,7 +275,7 @@ const UpdateUserHelper = () => {
 							{" "}
 							<CardMedia
 								className={classes.cover}
-								image="/static/images/cards/live-from-space.jpg"
+								image={baseUrl + user.user.imgname}
 								title="Live from space album cover"
 							/>
 						</Box>

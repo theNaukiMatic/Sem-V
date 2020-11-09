@@ -5,6 +5,8 @@ import profileReducer from "../features/profile/profileSlice";
 import userReducer from "../features/user/userSlice";
 import updateReducer from "../features/user/updateUserSlice";
 import joinGroupReducer from "../features/groups/joinGroupSlice";
+import groupPostReducer from "../features/groups/groupPostsSlice";
+import groupReducer from "../features/groups/groupSlice";
 import searchReducer from "./search";
 
 export default combineReducers({
@@ -15,5 +17,7 @@ export default combineReducers({
 	joinGroup: joinGroupReducer,
 	search: searchReducer,
 	updateUser: updateReducer,
+	groupPost: groupPostReducer,
+	group: groupReducer,
 	// visibilityFilter: visibilityFilterReducer,
 });

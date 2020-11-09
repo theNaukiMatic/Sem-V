@@ -15,6 +15,7 @@ import { useSelector, useDispatch } from "react-redux";
 // import { loginUser } from "../store/features/auth/authSlice";
 import { fetchUser } from "../store/features/user/userSlice";
 import UpdateUser from "./Profile/updateUser";
+import GroupDetail from "./Groups/GroupDetailComp";
 
 function Main() {
 	// const user = useSelector((state) => state.user);
@@ -34,6 +35,10 @@ function Main() {
 				<Route exact path="/" component={Landing} />
 				<PrivateRoute path="/home" component={HomePage} />
 				<PrivateRoute path="/profile/:userId" component={Profile} />
+				<PrivateRoute
+					path="/groupDetail/:groupId"
+					component={GroupDetail}
+				/>
 				<PrivateRoute path="/groups" component={Group} />
 				<PrivateRoute path="/search" component={Search} />
 				<PrivateRoute path="/editProfile" component={UpdateUser} />

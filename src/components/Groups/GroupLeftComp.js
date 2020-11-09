@@ -37,7 +37,9 @@ const GroupLeft = () => {
 					return (
 						<Grid item xs={12} sm={4} key={group._id}>
 							<Card className={classes.root}>
-								<CardActionArea>
+								<CardActionArea
+									href={`/groupDetail/${group._id}`}
+								>
 									<CardMedia
 										className={classes.media}
 										image="/static/images/cards/contemplative-reptile.jpg"
