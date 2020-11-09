@@ -1,61 +1,59 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { baseUrl } from "../../../baseUrl";
-const groupSlice = createSlice({
-	name: "group",
+import { fetchGroupPost } from "./groupPostsSlice";
+const postSlice = createSlice({
+	name: "post",
 	initialState: {
 		isLoading: false,
-		groupData: {
-			id: null,
-			name: null,
-			desc: null,
+		post: {
+			title: null,
+			message: null,
 		},
 		errMess: null,
 	},
 	reducers: {
-		//create Group reducers
-		groupRequest: (state, action) => ({
+		postRequest: (state, action) => ({
 			...state,
 			isLoading: true,
 		}),
-		groupSuccess: (state, action) => ({
+		postSuccess: (state, action) => ({
 			...state,
 			isLoading: false,
 			errMess: "",
 			groupData: action.groupData,
 		}),
-		groupFailed: (state, action) => ({
+		postFailed: (state, action) => ({
 			...state,
 			isLoading: false,
 			errMess: action.message,
 		}),
 	},
 });
-export const { groupFailed, groupRequest, groupSuccess } = groupSlice.actions;
+export const { postFailed, postRequest, postSuccess } = postSlice.actions;
 
 //action creators
 
-//create group action creators
-export const requestGroup = () => ({
-	type: groupRequest.type,
+export const requestPost = () => ({
+	type: postRequest.type,
 });
-export const recieveGroup = (response) => ({
-	type: groupSuccess.type,
+export const recievePost = (response) => ({
+	type: postSuccess.type,
 	groupData: response.group,
 });
-export const groupError = (message) => ({
-	type: groupFailed.type,
+export const postError = (message) => ({
+	type: postFailed.type,
 	message,
 });
-export const fetchGroup = (groupId) => (dispatch) => {
-	console.log("fetchGroup called for groupId : " + groupId);
-	dispatch(requestGroup());
+export const addPost = (post, groupId) => (dispatch) => {
+	dispatch(requestPost());
 	const bearer = "Bearer " + localStorage.getItem("token");
-	return fetch(baseUrl + `groups/${groupId}`, {
-		method: "Get",
+	return fetch(baseUrl + `posts/${groupId}`, {
+		method: "Post",
 		headers: {
 			"Content-Type": "application/json",
 			Authorization: bearer,
 		},
+		body: JSON.stringify(post),
 	})
 		.then(
 			(response) => {
@@ -77,7 +75,8 @@ export const fetchGroup = (groupId) => (dispatch) => {
 		.then((response) => response.json())
 		.then((response) => {
 			if (response.success) {
-				dispatch(recieveGroup(response));
+				dispatch(recievePost(response));
+				dispatch(fetchGroupPost(groupId));
 			} else {
 				var error = new Error("Error " + response.status);
 				error.response = response;
@@ -86,7 +85,7 @@ export const fetchGroup = (groupId) => (dispatch) => {
 				throw error;
 			}
 		})
-		.catch((error) => dispatch(groupError(error.message)));
+		.catch((error) => dispatch(postError(error.message)));
 };
 
-export default groupSlice.reducer;
+export default postSlice.reducer;

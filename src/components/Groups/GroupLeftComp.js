@@ -38,7 +38,7 @@ const GroupLeft = () => {
 						<Grid item xs={12} sm={4} key={group._id}>
 							<Card className={classes.root}>
 								<CardActionArea
-									href={`/groupDetail/${group._id}`}
+									href={`/groupDetail/${group.id}`}
 								>
 									<CardMedia
 										className={classes.media}

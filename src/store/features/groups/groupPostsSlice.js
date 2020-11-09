@@ -7,6 +7,7 @@ const groupPostSlice = createSlice({
 		isLoading: false,
 		posts: [],
 		errMess: null,
+		success: false,
 	},
 	reducers: {
 		//create Group reducers
@@ -19,6 +20,7 @@ const groupPostSlice = createSlice({
 			isLoading: false,
 			errMess: "",
 			posts: action.post,
+			success: true,
 		}),
 		groupPostFailed: (state, action) => ({
 			...state,
@@ -42,6 +44,7 @@ export const requestGroupPost = () => ({
 export const recieveGroupPost = (response) => ({
 	type: groupPostSuccess.type,
 	post: response,
+	success: true,
 });
 export const groupPostError = (message) => ({
 	type: groupPostFailed.type,
